@@ -14,8 +14,6 @@ public class Person {
     private Integer birthYear;
     private Integer deathYear;
 
-    // Getters y Setters...
-
     public Long getId() {
         return id;
     }

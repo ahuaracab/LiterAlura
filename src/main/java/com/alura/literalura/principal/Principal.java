@@ -38,7 +38,7 @@ public class Principal {
             System.out.println(menu);
             try {
                 option = scanner.nextInt();
-                scanner.nextLine();  // Limpiar el buffer
+                scanner.nextLine();
 
                 switch (option) {
                     case 1:
@@ -82,7 +82,7 @@ public class Principal {
             if (bookDataList == null || bookDataList.isEmpty()) {
                 System.out.println("\nNo se encontró ningún libro con ese título.\n");
             } else {
-                BookData bookData = bookDataList.get(0); // Obtener el primer libro de la lista
+                BookData bookData = bookDataList.getFirst();
                 Book book = new Book(bookData);
 
                 if (bookService.searchByTitle(book.getTitle()).isPresent()) {
@@ -162,14 +162,12 @@ public class Principal {
     }
 
     private void listBooksByLanguage() {
-        // Mostrar los idiomas disponibles del enum
         System.out.println("\n******** IDIOMAS DISPONIBLES ********\n");
         for (Language language : Language.values()) {
             System.out.println(language.name() + " - " + language.getFullName());
         }
         System.out.println("\n************************************\n");
 
-        // Pedir al usuario que ingrese el idioma deseado
         System.out.println("Ingrese el idioma para listar libros:");
         String languageInput = scanner.nextLine();
         try {

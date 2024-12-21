@@ -21,12 +21,10 @@ public class BookService {
     @Autowired
     private PersonRepository personRepository;
 
-    // Search for the first book by title
     public Optional<Book> searchByTitle(String title) {
         return repository.findByTitleContainingIgnoreCase(title).stream().findFirst();
     }
 
-    // Save book and related entities
     public void saveBook(Book book) {
         savePersonsIfNotExist(book.getAuthors());
         savePersonsIfNotExist(book.getTranslators());
@@ -41,23 +39,15 @@ public class BookService {
         }
     }
 
-    // List all registered books
     public Set<Book> listAllRegisteredBooks() {
         List<Book> books = repository.findAll();
         return new HashSet<>(books);
     }
 
-    // List all registered authors
-    public Set<Person> listAllRegisteredAuthors() {
-        return repository.findAllAuthors();
-    }
-
-    // List authors alive in a specific year
     public Set<Person> listAuthorsAliveInYear(int year) {
         return repository.findAuthorsAliveInYear(year);
     }
 
-    // List books by language
     public Set<Book> listBooksByLanguage(String language) {
         Language langEnum = Language.fromString(language);
         return repository.findBooksByLanguage(langEnum);
